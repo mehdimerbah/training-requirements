@@ -1,16 +1,6 @@
 #!/usr/bin/R
 
 
-if (interactive()) {
-  con <- stdin()
-} else {
-  con <- "stdin"
-}
-cat("X or O? ")
-symbol <- readLines(con = con, n = 1)
-
-tic_mat <- matrix(, nrow = 3, ncol = 3)
-
 check_if_win() <- function(mat){
 	x_sum <- utf8ToInt("X")*3
 	o_sum <- utf8ToInt("O")*3
@@ -45,3 +35,66 @@ check_if_win() <- function(mat){
 
 return("Tie")
 }
+
+
+print_game <- function(mat){
+	for(i in 1:3){
+		for(j in 1:3){
+		## Add matrix print		
+		}
+	}
+	
+}
+
+play <- function(){
+	counter <- 0
+	player <- "Player 1"
+	if (interactive()) {
+	  con <- stdin()
+	} else {
+	  con <- "stdin"
+	}
+
+	tic_mat <- matrix(, nrow = 3, ncol = 3)
+
+	while(counter <= 9){
+		counter <- counter + 1
+
+		if(counter %% 2 == 0){
+			player <- "Player 2"
+			symbol <- "O"
+		}
+		else{
+			player <- "Player 1"
+			symbol <- "X"
+		}
+		
+		print(player, "Where do you want your symbol?")
+		row <- readline(prompt = "Enter row: ")
+		col <- readline(prompt = "Enter column: ")
+		tic_mat[row,col] <- symbol
+		tic_mat
+
+		if(counter >= 5){
+			res <- check_if_win(tic_mat) 
+			if( res == "X"){
+				printf("Player 1 wins!")
+				break
+			}
+			else if( res == "O"){
+				printf("Player 2 wins!")
+				break
+			}
+			else{
+				if(counter == 9){
+					printf("Tie!")
+				}
+				else{
+					next
+				}
+			}
+		}
+	}
+
+}
+
