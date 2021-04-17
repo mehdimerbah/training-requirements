@@ -96,7 +96,7 @@ play <- function(){
 			}
 			else{
 				if(counter == 9){
-					printf("Tie!")
+					print("Tie!")
 				}
 				else{
 					next
